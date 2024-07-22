@@ -2,12 +2,12 @@ from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-import models , database
+import models
+import database
 from celery_worker import send_email_task
 
 app = FastAPI()
 
-# Создание всех таблиц в базе данных
 models.Base.metadata.create_all(bind=database.engine)
 
 
