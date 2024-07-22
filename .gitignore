@@ -5,3 +5,5 @@ noti
 ._*
 __pycache__/
 *.py[cod]
+dump.rdb
+

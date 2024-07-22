@@ -1,13 +1,17 @@
-from sqlalchemy import Column, Integer, String, MetaData, Table
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
 
-metadata = MetaData()
+Base = declarative_base()
+metadata = Base.metadata
 
-user = Table(
-    "users",
-    metadata,
-    Column("user_id", Integer, primary_key=True),
-    Column("username", String, unique=True, nullable=False),
-    Column("email", String, unique=True, nullable=False),
-    Column("hashed_password", String, nullable=False),
 
-)
+class EmailNotification(Base):
+    __tablename__ = "email_notifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, index=True)
+    subject = Column(String)
+    message = Column(String)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    status = Column(String, default="Pending")
