@@ -2,8 +2,8 @@ from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from . import models, database
-from .celery_worker import send_email_task
+import models , database
+from celery_worker import send_email_task
 
 app = FastAPI()
 
