@@ -15,10 +15,8 @@ celery = Celery(
 def send_email_task(email: str, subject: str, message: str):
     db: Session = SessionLocal()
     try:
-        # Логика отправки email
         print(f"Отправка email: {email}, Тема: {subject}, Сообщение: {message}")
 
-        # Обновление записи в базе данных (например, можно добавить статус отправки)
         email_notification = db.query(EmailNotification).filter_by(email=email).first()
         if email_notification:
             email_notification.status = "Sent"
